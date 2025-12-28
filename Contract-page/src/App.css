@@ -1,0 +1,152 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body{
+  height: 100%;
+  width: 100%;
+  /* margin: 10px; */
+}
+ .App{
+  /* height: 100px; */
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  /* align-items: flex-start; */
+  /* background-color: lightgrey; */
+ } 
+form {
+  background-color: beige;
+  padding: 20px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 8px;
+}
+input {
+  padding: 8px;
+  border-radius: 4px;
+  border: 2px solid #ccc;
+}
+button {
+  height: 35px;
+  background-color: lightblue;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.1s ease;
+}
+button:active {
+  transform: scale(0.95);
+}
+.card{
+  height: 250px;
+  width: 250px;
+  background-color: black;
+  padding: 15px;
+  color: white;
+  margin: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* box-shadow: 0 2px 5px rgba(108, 226, 108, 0.1); */
+}
+.card img{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+.card h2{
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2px;
+}
+.card p{
+  text-align: center;
+  /* margin: 2px; */
+}
+.card p.position{
+  color: #4da6ff;
+  margin-bottom: 10px;
+}
+.card p.email{
+  color: #bfbfbf;
+}
+.card p.number{
+  color: #e0e0e0;
+}
+.card button{
+  height: 40px;
+  width: 100px;
+  margin-top: auto;
+  background-color: red;
+  color: white;
+  /* align-items: center; */
+}
+
+
+
+
+
+/* =========================
+   IMAGE UPLOAD AREA (ADD)
+========================= */
+
+.image-upload {
+  width: 50px;
+  height: 50px;
+
+  border: 2px dashed #999;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+}
+
+.image-upload:hover {
+  border-color: #4da6ff;
+  background-color: #eef6ff;
+}
+
+.image-upload img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+
+
+
+
+
+
+@media (max-width: 600px) {
+
+  .App {
+    flex-direction: column;   /* 🔥 mobile pe vertical */
+  }
+
+  form {
+    width: 100%;
+    margin-bottom: 15px;     /* form ke niche gap */
+  }
+
+  .cards {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
