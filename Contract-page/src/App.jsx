@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import html2canvas from "html2canvas"; // ✅ NEW: html2canvas import
 import "./App.css";
 
 function App() {
@@ -6,12 +7,8 @@ function App() {
   const [userName, setuserName] = useState('');
   const [userEmail, setuserEmail] = useState('');
   const [userNumber, setuserNumber] = useState('');
-  
-  const [userImg, setuserImg] = useState(null); 
-  // 🔴 CHANGED: pehle string thi, ab File object (image upload ke liye)
-
+  const [userImg, setuserImg] = useState(null);
   const [position, setposition] = useState('');
-
   const [Alluser, setAllusers] = useState([]);
 
   const handleSubmit = (e) => {
@@ -20,11 +17,9 @@ function App() {
     const newUser = {
       userName,
       userEmail,
-      userNumber: `+91${userNumber}`, // +91 permanent
+      userNumber: `+91${userNumber}`,
       position,
-
       userImg: userImg ? URL.createObjectURL(userImg) : null,
-      // 🔴 CHANGED: selected image ka preview URL create kiya
     };
 
     setAllusers((prev) => [...prev, newUser]);
@@ -33,7 +28,7 @@ function App() {
     setuserName('');
     setuserEmail('');
     setuserNumber('');
-    setuserImg(null);          // 🔴 CHANGED
+    setuserImg(null);
     setposition('');
   };
 
@@ -50,6 +45,20 @@ function App() {
     setAllusers(copyusers);
   };
 
+  // ✅ NEW: DOWNLOAD CARD FUNCTION
+  const downloadCard = (index) => {
+    const card = document.getElementById(`card-${index}`); // 🔴 CHANGED
+
+    html2canvas(card).then((canvas) => {
+      const image = canvas.toDataURL("image/png");
+
+      const link = document.createElement("a");
+      link.href = image;
+      link.download = "user-card.png";
+      link.click();
+    });
+  };
+
   return (
     <div className="App">
 
@@ -63,9 +72,8 @@ function App() {
                 ? URL.createObjectURL(userImg)
                 : "https://via.placeholder.com/80"
             }
-            alt=" File"
+            alt="File"
           />
-          {/* 🔴 CHANGED: image click par gallery open hogi */}
 
           <input
             type="file"
@@ -73,7 +81,6 @@ function App() {
             hidden
             required
             onChange={(e) => setuserImg(e.target.files[0])}
-            // 🔴 CHANGED: file input (gallery / storage)
           />
         </label>
 
@@ -116,23 +123,29 @@ function App() {
       {/* USER CARDS */}
       {Alluser.map((user, index) => {
         return (
-          <div className="card" key={index}>
+          <div className="card" id={`card-${index}`} key={index}>
+            {/* 🔴 CHANGED: id added for download */}
+
             <img src={user.userImg} alt="user" />
             <h2>{user.userName}</h2>
             <p style={{ color: 'blue' }}>{user.position}</p>
             <p>{user.userEmail}</p>
             <p>{user.userNumber}</p>
 
-            <button
-              onClick={() => deleteHandler(index)}
-              // ❌ FIX: pehle galat index ja raha tha
-            >
+            {/* ✅ NEW: Download Button */}
+            <button className="download-btn" 
+            onClick={() => downloadCard(index)}>
+              Download
+            </button>
+
+            <button className="remove-btn"
+            onClick={() => deleteHandler(index)}>
               Remove
             </button>
           </div>
         );
       })}
-      
+
     </div>
   );
 }

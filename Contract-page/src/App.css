@@ -1,22 +1,32 @@
-*{
+/* =====================
+   GLOBAL RESET
+===================== */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 html,
-body{
-  height: 100%;
+body {
   width: 100%;
-  /* margin: 10px; */
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
 }
- .App{
-  /* height: 100px; */
+
+/* =====================
+   MAIN LAYOUT
+===================== */
+.App {
   width: 100%;
   display: flex;
-  flex-direction: row;
-  /* align-items: flex-start; */
-  /* background-color: lightgrey; */
- } 
+  gap: 20px;
+  padding: 20px;
+}
+
+/* =====================
+   FORM STYLING
+===================== */
 form {
   background-color: beige;
   padding: 20px;
@@ -26,81 +36,20 @@ form {
   gap: 12px;
   border-radius: 8px;
 }
+
 input {
   padding: 8px;
   border-radius: 4px;
   border: 2px solid #ccc;
 }
-button {
-  height: 35px;
-  background-color: lightblue;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: transform 0.1s ease;
-}
-button:active {
-  transform: scale(0.95);
-}
-.card{
-  height: 250px;
-  width: 250px;
-  background-color: black;
-  padding: 15px;
-  color: white;
-  margin: 20px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* box-shadow: 0 2px 5px rgba(108, 226, 108, 0.1); */
-}
-.card img{
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  margin-bottom: 10px;
-}
-.card h2{
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 2px;
-}
-.card p{
-  text-align: center;
-  /* margin: 2px; */
-}
-.card p.position{
-  color: #4da6ff;
-  margin-bottom: 10px;
-}
-.card p.email{
-  color: #bfbfbf;
-}
-.card p.number{
-  color: #e0e0e0;
-}
-.card button{
-  height: 40px;
-  width: 100px;
-  margin-top: auto;
-  background-color: red;
-  color: white;
-  /* align-items: center; */
-}
 
-
-
-
-
-/* =========================
-   IMAGE UPLOAD AREA (ADD)
-========================= */
-
+/* =====================
+   IMAGE UPLOAD UI
+===================== */
 .image-upload {
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
+  margin: auto;
 
   border: 2px dashed #999;
   border-radius: 50%;
@@ -122,31 +71,165 @@ button:active {
 .image-upload img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   border-radius: 50%;
+  object-fit: cover; /* 🔥 full cover */
 }
 
+/* =====================
+   PHONE INPUT
+===================== */
+.phone-input {
+  display: flex;
+  align-items: center;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+}
 
+.country-code {
+  font-weight: bold;
+  margin-right: 6px;
+}
 
+.phone-input input {
+  border: none;
+  outline: none;
+  width: 100%;
+}
 
+/* =====================
+   FORM BUTTON
+===================== */
+form button {
+  height: 36px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: lightblue;
+  transition: transform 0.1s ease, background-color 0.2s ease;
+}
 
+form button:hover {
+  background-color: #87ceeb;
+}
 
+form button:active {
+  transform: scale(0.95);
+}
 
+/* =====================
+   CARDS SECTION
+===================== */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* =====================
+   CARD STYLING
+===================== */
+.card {
+  height: 260px;
+  width: 250px;
+  background-color: black;
+  padding: 15px;
+  color: white;
+  margin: 10px;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+.card h2 {
+  font-weight: bold;
+  text-align: center;
+}
+
+.card p {
+  text-align: center;
+  font-size: 14px;
+}
+
+.card p.position {
+  color: #4da6ff;
+  margin-bottom: 8px;
+}
+
+.card p.email {
+  color: #bfbfbf;
+}
+
+.card p.number {
+  color: #e0e0e0;
+}
+
+/* =====================
+   CARD BUTTONS (SEPARATE)
+===================== */
+.card button {
+  width: 110px;
+  height: 34px;
+  margin-top: 6px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s ease, opacity 0.2s ease;
+}
+
+.card button:active {
+  transform: scale(0.95);
+}
+
+/* ✅ DOWNLOAD BUTTON */
+.download-btn {
+  background-color: #22c55e; /* green */
+}
+
+.download-btn:hover {
+  opacity: 0.9;
+}
+
+/* ❌ REMOVE BUTTON */
+.remove-btn {
+  background-color: #ef4444; /* red */
+}
+
+.remove-btn:hover {
+  opacity: 0.9;
+}
+
+/* =====================
+   MOBILE VIEW
+===================== */
 @media (max-width: 600px) {
 
   .App {
-    flex-direction: column;   /* 🔥 mobile pe vertical */
+    flex-direction: column;
   }
 
   form {
     width: 100%;
-    margin-bottom: 15px;     /* form ke niche gap */
   }
 
   .cards {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+  }
+
+  .card {
+    width: 90%;
+    height: auto;
   }
 }
