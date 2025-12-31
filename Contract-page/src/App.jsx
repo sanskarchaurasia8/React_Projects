@@ -9,20 +9,27 @@ function App() {
   const [userNumber, setuserNumber] = useState('');
   const [userImg, setuserImg] = useState(null);
   const [position, setposition] = useState('');
-  const [Alluser, setAllusers] = useState([]);
+  
+  const localdata = JSON.parse(localStorage.getItem("all-users")) || [];
+
+  const [Alluser, setAllusers] = useState(localdata);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newUser = {
+    const olduser = [...Alluser];
+
+    olduser.push({
       userName,
       userEmail,
       userNumber: `+91${userNumber}`,
       position,
       userImg: userImg ? URL.createObjectURL(userImg) : null,
-    };
+    });
 
-    setAllusers((prev) => [...prev, newUser]);
+    setAllusers(olduser);
+
+    localStorage.setItem('all-users', JSON.stringify(olduser));
 
     // reset form
     setuserName('');
@@ -43,6 +50,8 @@ function App() {
     const copyusers = [...Alluser];
     copyusers.splice(index, 1);
     setAllusers(copyusers);
+    localStorage.setItem('all-users', JSON.stringify(copyusers));
+
   };
 
   // ✅ NEW: DOWNLOAD CARD FUNCTION
@@ -111,7 +120,7 @@ function App() {
           <span className="country-code">+91</span>
           <input
             type="tel"
-            placeholder="Enter Number"
+            placeholder="Phone Number"
             value={userNumber}
             onChange={handleNumberChange}
           />
